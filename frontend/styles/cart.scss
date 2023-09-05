@@ -1,0 +1,438 @@
+// 檔案位置: styles/global.scss
+// 變數覆蓋用 (Variable overrides)
+// 全站配色 colors
+$primary: #137976;
+$primary-dark: #0d5654;
+$primary-light: #7fb8b6;
+$primary-bg: #e5efef;
+$secondary: #ffce56;
+
+// 字體配色
+$font: #5f5f5f;
+$font-light: #ffff;
+
+// 按鈕圓角邊 button radius
+$border-radius: 0.2em;
+$border-radius-sm: 0.2em;
+$border-radius-lg: 0.2em;
+
+@mixin xxl {
+  @media (max-width: 1400px) {
+    @content;
+  }
+}
+@mixin xl {
+  @media (max-width: 1200px) {
+    @content;
+  }
+}
+@mixin md {
+  @media (max-width: 991px) {
+    @content;
+  }
+}
+
+@mixin lg {
+  @media (max-width: 768px) {
+    @content;
+  }
+}
+
+@mixin sm {
+  @media (max-width: 576px) {
+    @content;
+  }
+}
+/* cart頁 */
+#cart-page {
+  margin: 0;
+  width: 100%;
+  padding-inline: 160px;
+  font-family: 'Noto Sans TC';
+  font-weight: 300;
+  @include md {
+    padding-inline: 5%;
+  }
+
+  //1.購物順序
+  #cart-steps {
+    width: 100%;
+    // margin-inline: -10%;
+    padding-block: 20px;
+    position: sticky;
+    top: 100px;
+    background-color: #fff;
+    z-index: 30;
+    @include sm {
+      padding-block: 10px;
+    }
+
+    p {
+      margin: 0;
+      font-size: 28px;
+      font-weight: 500;
+      color: $font;
+      span {
+        height: 100%;
+        padding-left: 20px;
+        font-size: 20px;
+        text-align: center;
+      }
+      @include sm {
+        font-size: 20px;
+        display: none;
+        position: relative;
+        left: 50%;
+        transform: translateX(-50%);
+        span {
+          padding-left: 10px;
+          height: 100%;
+          font-size: 16px;
+          text-align: start;
+        }
+      }
+    }
+    .now-step {
+      color: $primary;
+      display: block;
+      margin-inline: -10px;
+    }
+  }
+
+  //2.購物車內商品
+  #cart-products {
+    overflow: hidden;
+    padding-block: 12px;
+    @include sm {
+      padding-block: 6px;
+    }
+    //2-1 選擇商品類型
+    ul {
+      margin: 0;
+      padding: 0;
+    }
+    li {
+      padding: 8px 20px;
+      letter-spacing: 2px;
+      border-radius: 15px 15px 0px 0px;
+      overflow: hidden;
+      transition: color 1s, background-color 1s;
+      &:hover {
+        background-color: $primary;
+        color: #fff;
+      }
+    }
+    .now-product-type {
+      background-color: #7fb8b6;
+      color: #fff;
+      border-radius: 15px 15px 0px 0px;
+    }
+    //2-2 購物車table
+    #cart-list {
+      table {
+        border: 3px solid #5f5f5f;
+      }
+      thead {
+        background-color: $font;
+
+        color: #fff;
+        height: 40px;
+
+        tr th {
+          font-weight: 500;
+          text-align: center;
+          &:nth-child(1) {
+            padding-left: 30px;
+            text-align: left;
+          }
+        }
+      }
+      tbody {
+        tr {
+          &:nth-child(2n) {
+            background-color: #e5efef;
+          }
+          &:nth-child(2n + 1) {
+            background-color: #fbfbfb;
+          }
+        }
+        tr td {
+          height: 100px;
+          text-align: center;
+
+          &:nth-child(1) {
+            padding-left: 20px;
+            text-align: left;
+            img {
+              width: 80px;
+              height: 80px;
+            }
+          }
+          &:nth-child(3) {
+            left: 50%;
+            transform: translateX(-50%);
+          }
+          &:nth-child(5) {
+            align-items: center;
+            padding-left: 10px;
+          }
+          .count-btn {
+            margin: auto;
+          }
+        }
+        #product-count {
+          display: inline;
+          width: 45px;
+          margin: auto;
+          height: 40px;
+
+          border: 1px solid $primary-light;
+
+          input {
+            background-color: #fff;
+            border: 0px;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+          }
+        }
+        input[type='number']::-webkit-outer-spin-button,
+        input[type='number']::-webkit-inner-spin-button {
+          -webkit-appearance: none;
+          margin: 0;
+        }
+        .count-btn {
+          background: $primary-light;
+          height: 40px;
+          width: 40px;
+          color: #fff;
+          border: 0px solid;
+          font-size: 24px;
+          padding: 0;
+          &:hover {
+            background: $primary;
+          }
+        }
+        .count-btn-minus {
+          border-radius: 20px 0px 0px 20px;
+        }
+        .count-btn-add {
+          border-radius: 0px 20px 20px 0px;
+        }
+        .cart-delete {
+          color: #888;
+          font-size: 25px;
+          padding-left: 5px;
+        }
+        .cart-delete:hover {
+          color: #cc4646;
+        }
+      }
+    }
+
+    .cart-total {
+      position: relative;
+      right: 0;
+      font-size: 18px;
+      text-align: right;
+      @include sm {
+        font-size: 14px;
+
+        margin-bottom: 0.6rem;
+      }
+      span {
+        font-weight: 500;
+        color: $primary;
+      }
+    }
+  }
+
+  //4.按鈕
+  .cart-btn-group {
+    position: relative;
+
+    button {
+      font-size: 16px;
+      font-weight: 300;
+      letter-spacing: 2px;
+      width: 160px;
+      padding-block: 10px;
+      color: #fff;
+      @include sm {
+        width: 100%;
+        margin-block: 10px;
+        margin-inline: 0;
+      }
+
+      a {
+        color: #fff;
+      }
+    }
+    .btn-back {
+      background-color: $primary-light;
+      &:hover {
+        background-color: $primary;
+      }
+
+      @include sm {
+        position: absolute;
+        margin-inline: 0;
+        padding-block: 5px;
+        left: 0px;
+        top: -75px;
+        width: 40%;
+        font-size: 14px;
+        text-align: center;
+      }
+    }
+    .btn-delete {
+      margin-left: 30px;
+      background-color: #888;
+      @include sm {
+        position: absolute;
+        margin-inline: 0;
+        padding-block: 5px;
+        left: 0px;
+        top: -35px;
+        width: 40%;
+        font-size: 12px;
+        text-align: center;
+      }
+
+      &:hover {
+        background-color: $font;
+      }
+    }
+    .btn-nextpage {
+      font-size: 16px;
+
+      border: 0;
+      border-radius: 3.6px;
+      width: 240px;
+      background-color: #ffc700;
+      position: absolute;
+      top: 0;
+      right: 0;
+      font-weight: 500;
+      &:hover {
+        background-color: $secondary;
+      }
+      @include sm {
+        position: relative;
+        width: 100%;
+        font-size: 16px;
+      }
+    }
+  }
+}
+
+// 付款與運送資訊
+#food-confirm,
+#ticket-confirm {
+  font-size: 18px;
+  table {
+    // margin-top: 20px;
+    thead tr {
+      border-bottom: 1px solid #888;
+    }
+    th {
+      font-weight: 300;
+      padding-block: 20px;
+      &:first-child {
+        font-size: 24px;
+        font-weight: 500;
+      }
+    }
+    tbody {
+      background: #f8f8f8;
+    }
+    .no-active {
+      display: none;
+    }
+
+    td {
+      height: 100px;
+      img {
+        height: 80px;
+        width: 80px;
+      }
+      span {
+        padding-left: 15px;
+      }
+      &:first-child {
+        padding-left: 30px;
+      }
+    }
+    img {
+      width: 100px;
+      height: 100px;
+    }
+  }
+}
+
+#paymentForm {
+  #send-data {
+    label {
+      width: 100%;
+      font-weight: 500;
+      padding-block: 5px;
+      color: #353535;
+    }
+    select,
+    input {
+      
+      display: block;
+      color: #717171;
+      font-weight: 300;
+      width: 70%;
+      height: 2.5em;
+      padding: 8px;
+      position: relative;
+      border-radius: 5px;
+      font-size: 16px;
+      border-color: #717171;
+      border-width: 1px;
+      letter-spacing: 1px;
+      @include md{
+        width: 85%;
+      }
+    }
+    select:focus,
+    input:focus {
+      outline: 2px solid $secondary;
+      border: 0;
+      color: #080707;
+    }
+    label:focus-within {
+      color: #ffc700;
+    }
+
+    select {
+      width: 260px;
+
+      appearance: none;
+      -moz-appearance: none;
+      -webkit-appearance: none;
+      background-image: url('data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%3E%3Cpath%20fill%3D%22%230d5654%22%20d%3D%22M7%2010l5%205%205-5z%22%2F%3E%3C%2Fsvg%3E'),
+        linear-gradient(#fff, #fff);
+      background-position: right 0.5em top 50%, 0 0;
+      background-size: contain, cover;
+      background-repeat: no-repeat, repeat;
+    }
+    label span {
+      line-height: 30px;
+    }
+  }
+
+  .submit-btn {
+    
+    input {
+      right: 0;
+      bottom: 0px;
+      font-size: 18px;
+      width: 200px;
+      padding: 10px;
+      margin-right: 30px;
+    }
+  }
+}
